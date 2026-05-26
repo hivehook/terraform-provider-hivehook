@@ -1,0 +1,12 @@
+# Built provider binaries
+terraform-provider-hivehook
+*.exe
+
+# Terraform state
+*.tfstate
+*.tfstate.backup
+*.tfvars
+.terraform/
+.terraform.lock.hcl
+
+.DS_Store
