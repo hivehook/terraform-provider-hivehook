@@ -2,18 +2,32 @@
 
 Manage [Hivehook](https://hivehook.com) sources, destinations, subscriptions, applications, endpoints, transformations, API keys, and alert rules from Terraform. Works against the hosted service at `app.hivehook.com` by default, or against an enterprise self-hosted endpoint.
 
-## Use it
+## Status
+
+Not yet on the Terraform Registry. Build and run it from source with a `dev_overrides` block (below); registry distribution is coming.
+
+## Build from source
+
+```bash
+git clone https://github.com/hivehook/terraform-provider-hivehook.git
+cd terraform-provider-hivehook
+go build -o terraform-provider-hivehook
+```
+
+Point Terraform at the directory holding the built binary, in `~/.terraformrc`:
 
 ```hcl
-terraform {
-  required_providers {
-    hivehook = {
-      source  = "hivehook/hivehook"
-      version = "~> 0.1"
-    }
+provider_installation {
+  dev_overrides {
+    "hivehook/hivehook" = "/absolute/path/to/terraform-provider-hivehook"
   }
+  direct {}
 }
+```
 
+With `dev_overrides` set, skip `terraform init` and use the provider directly (no `required_providers` block needed):
+
+```hcl
 provider "hivehook" {
   endpoint = "https://app.hivehook.com"
   api_key  = var.hivehook_api_key
