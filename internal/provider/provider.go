@@ -28,6 +28,9 @@ type hivehookProviderModel struct {
 	APIKey   types.String `tfsdk:"api_key"`
 }
 
+// Version is the provider version, set at build time via -ldflags.
+var Version = "dev"
+
 // New returns a new Hivehook provider instance.
 func New() provider.Provider {
 	return &hivehookProvider{}
@@ -36,6 +39,7 @@ func New() provider.Provider {
 // Metadata returns the provider type name.
 func (p *hivehookProvider) Metadata(_ context.Context, _ provider.MetadataRequest, resp *provider.MetadataResponse) {
 	resp.TypeName = "hivehook"
+	resp.Version = Version
 }
 
 // Schema defines the provider-level configuration schema.

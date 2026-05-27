@@ -10,3 +10,4 @@ terraform-provider-hivehook
 .terraform.lock.hcl
 
 .DS_Store
+dist/
